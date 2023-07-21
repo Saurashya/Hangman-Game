@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: black;
+}
+body {
+  background-image: url("../../hangman-background-new-1.jpg");
+  background-repeat: cover;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 42px;
+}
+h1 {
+  font-size: 2rem;
+}
+#hangman {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+#hangman img {
+  width: 300px;
+  height: 300px;
+}
+#letters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#letters button {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  font-size: 2rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+#letters button:hover {
+  background-color: #ccc;
+}
+#letters button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+#message {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+#wordSpotlight {
+  font-size: 3rem;
+}
+#guesses {
+  color: white;
+}
+#guesses > p {
+  font-size: 1.5rem;
+}
+#heading {
+  margin-top: 20px;
+}
+#hangmanPic {
+  margin-bottom: -10px;
+  margin-top: -45px;
+}
+.text-center > p {
+  font-size: 1.5rem;
+}
+#keyboard {
+  font-size: 3rem;
+}
