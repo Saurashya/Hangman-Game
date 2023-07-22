@@ -1,26 +1,72 @@
 var fruits = [
-  "mango", "apple", "banana", "grapes", "orange", "pineapple", "watermelon", "papaya", "guava", "cherry", "strawberry", "blueberry", "raspberry","kiwi", "pear", "peach", "plum", "apricot", "avocado", "coconut","lychee","melon","pomegranate","tomato","jackfruit", "durian", "dragonfruit","guava"]
+  "Mango", "apple", "banana", "grapes", "orange", "pineapple", "watermelon", "papaya", "guava", "cherry", "strawberry", "blueberry", "raspberry","kiwi", "pear", "peach", "plum", "apricot", "avocado", "coconut","lychee","melon","pomegranate","tomato","jackfruit", "durian", "dragonfruit","guava","tangerine"]
   
   let answer = '';
   let maxWrong = 6;
   let mistakes = 0;
   let guessed = [];
   let wordStatus = null;
+  let hintUses = 0;
   
+
+  function updateTimerDisplay(seconds) {
+    const timerDisplay = document.getElementById('timer');
+    timerDisplay.textContent = `${seconds} seconds`;
+  }
+
+  // Function to start the timer
+  function startTimer() {
+    let seconds = 60;
+    updateTimerDisplay(seconds);
+
+    // Update the timer every second
+    const interval = setInterval(() => {
+      seconds--;
+      updateTimerDisplay(seconds);
+    }, 1000);
+
+    // Function to stop the timer when needed
+    function stopTimer() {
+      clearInterval(interval);
+      var winstatus=document.getElementById('keyboard').innerHTML;
+      if(winstatus != 'You Won!!!'){
+      document.getElementById('keyboard').innerHTML = 'You lost!!!';
+      }
+    }
+    return stopTimer;
+  }
+  const stopTimerFunction = startTimer();
+  setTimeout(() => stopTimerFunction(), 60000);
+
+
+
   function randomWord() {
     answer = fruits[Math.floor(Math.random() * fruits.length)];
   }
+
   function getHint() {
-    for (let i = 0; i < answer.length; i++) {
-      const letter = answer[i].toLowerCase();
-      if (guessed.indexOf(letter) === -1) {
-        guessed.push(letter);
-        guessedWord();
-        document.getElementById(letter).setAttribute('disabled', true);
-        return;
+      // Check if the hint button has been used twice already
+      if (hintUses >= 2) {
+        return; // If it has, do nothing and return from the function
+      }
+  
+      // Loop through the answer and find the first letter that hasn't been guessed
+      for (let i = 0; i < answer.length; i++) {
+        const letter = answer[i].toLowerCase();
+        if (guessed.indexOf(letter) === -1) {
+          // Update the hint uses count and disable the hint button if used twice
+          hintUses++;
+          if (hintUses >= 2) {
+            document.getElementById('hintButton').setAttribute('disabled', true);
+          }
+  
+          guessed.push(letter);
+          guessedWord();
+          document.getElementById(letter).setAttribute('disabled', true);
+          return;
+        }
       }
     }
-  }
   function generateButtons() {
     let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
       `
@@ -69,7 +115,10 @@ var fruits = [
   }
   
   function guessedWord() {
-    wordStatus = answer.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : " _ ")).join('');
+    wordStatus = answer
+      .split('')
+      .map((letter) => (guessed.indexOf(letter.toLowerCase()) >= 0 || letter === ' ' ? letter : " _ "))
+      .join('');
   
     document.getElementById('wordSpotlight').innerHTML = wordStatus;
   }
@@ -77,17 +126,16 @@ var fruits = [
   function updateMistakes() {
     document.getElementById('mistakes').innerHTML = mistakes;
   }
+  document.addEventListener('keydown', (event) => {
+      // Check if the key pressed is an alphabet character
+      if (/^[a-zA-Z]$/.test(event.key)) {
+        // Convert the key to lowercase and call the handleGuess function
+        handleGuess(event.key.toLowerCase());
+      }
+    });
   
   function reset() {
-    mistakes = 0;
-    guessed = [];
-    document.getElementById('hangmanPic').src = './images/0.jpg';
-  
-    randomWord();
-    guessedWord();
-    updateMistakes();
-    generateButtons();
-    getHint();
+      location.reload();
   }
   
   document.getElementById('maxWrong').innerHTML = maxWrong;
@@ -95,5 +143,3 @@ var fruits = [
   randomWord();
   generateButtons();
   guessedWord();
-  getHint();
-  

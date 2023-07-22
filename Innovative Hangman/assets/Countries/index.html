@@ -21,14 +21,18 @@
           Wrong Guesses: <span id="mistakes">0</span> of
           <span id="maxWrong"></span>
         </p>
+        <p id="guess2">Time Left: <span id="timer">120</span> seconds</p>
       </div>
       <div class="text-center">
         <img id="hangmanPic" src="./images/0.jpg" alt="" />
         <p id="guess">Guess the Country :</p>
         <p id="wordSpotlight">The word to be guessed goes here</p>
+
         <div id="keyboard"></div>
         <button class="btn btn-info" onClick="reset()">Reset</button>
-        <button class="btn btn-info" onClick="getHint()">Hint</button>
+        <button id="hints" class="btn btn-info" onClick="getHint()">
+          Hint
+        </button>
       </div>
     </div>
     <script src="index.js"></script>

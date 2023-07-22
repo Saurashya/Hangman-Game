@@ -1,12 +1,19 @@
+:root {
+  --bg-color: #1f242d;
+  --second-bg-color: #323946;
+  --text-color: #fff;
+  --main-color: #0ef;
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-size: 12px;
-  color: black;
+  color: white;
+  text-shadow: 0 0 3rem var(--main-color);
 }
 body {
-  background-image: url("../../test.jpg");
+  background-image: url("../../test2.jph.jpg");
   background-color: rgba(255, 255, 255, 0.1);
   background-repeat: cover;
   background-position: center;
@@ -81,10 +88,15 @@ h1 {
 #guess {
   font-size: 3rem;
   font-weight: bold;
+  text-shadow: 0 0 2rem var(--main-color);
 }
-#guess1 {
+#guess1,
+#guess2 {
   font-weight: bold;
 }
 #keyboard {
   font-size: 3rem;
+}
+#timer {
+  font-weight: bold;
 }

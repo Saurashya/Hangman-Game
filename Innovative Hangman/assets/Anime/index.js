@@ -1,12 +1,43 @@
 var fruits = [
-  "attack on titan", "my hero academia", "naruto", "one piece", "dragon ball z", "sword art online", "death note", "demon slayer", "fullmetal alchemist", "naruto shippuden", "hunter x hunter", "tokyo ghoul", "one punch man", "bleach", "fairy Tail", "steins gate","code geass", "dragon ball super", "black clover", "jojos bizarre adventure", "mob psycho", "fate", "attack on titan", "re zero ", "the promised neverland", "haikyuu"]
+  "attack on titan", "my hero academia", "naruto", "one piece", "dragon ball z", "sword art online", "death note", "demon slayer", "fullmetal alchemist", "naruto shippuden", "hunter x hunter", "tokyo ghoul", "one punch man", "bleach", "fairy tail", "steins gate","code geass", "dragon ball super", "black clover", "jojos bizarre adventure", "mob psycho", "fate", "attack on titan", "re zero ", "the promised neverland", "haikyuu"]
   
   let answer = '';
   let maxWrong = 6;
   let mistakes = 0;
   let guessed = [];
   let wordStatus = null;
-  
+
+  function updateTimerDisplay(seconds) {
+    const timerDisplay = document.getElementById('timer');
+    timerDisplay.textContent = `${seconds} seconds`;
+  }
+
+  // Function to start the timer
+  function startTimer() {
+    let seconds = 10;
+    updateTimerDisplay(seconds);
+
+    // Update the timer every second
+    const interval = setInterval(() => {
+      seconds--;
+      updateTimerDisplay(seconds);
+    }, 1000);
+
+    // Function to stop the timer when needed
+    function stopTimer() {
+      clearInterval(interval);
+      var winstatus=document.getElementById('keyboard').innerHTML;
+      if(winstatus != 'You Won!!!'){
+      document.getElementById('keyboard').innerHTML = 'You lost!!!';
+      }
+    }
+    return stopTimer;
+  }
+  const stopTimerFunction = startTimer();
+  setTimeout(() => stopTimerFunction(), 10000);
+
+
+
   function randomWord() {
     answer = fruits[Math.floor(Math.random() * fruits.length)];
   }
@@ -90,7 +121,8 @@ var fruits = [
     guessedWord();
     updateMistakes();
     generateButtons();
-    getHint();
+    const stopTimerFunction = startTimer();
+    setTimeout(() => stopTimerFunction(), 10000);
   }
   
   document.getElementById('maxWrong').innerHTML = maxWrong;
@@ -98,4 +130,3 @@ var fruits = [
   randomWord();
   generateButtons();
   guessedWord();
-  getHint();
