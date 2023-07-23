@@ -1,5 +1,5 @@
 var fruits = [
-    "attack on titan", "my hero academia", "naruto", "one piece", "dragon ball z", "sword art online", "death note", "demon slayer", "fullmetal alchemist", "naruto shippuden", "hunter x hunter", "tokyo ghoul", "one punch man", "bleach", "fairy tail", "steins gate","code geass", "dragon ball super", "black clover", "jojos bizarre adventure", "mob psycho", "fate", "attack on titan", "re zero ", "the promised neverland", "haikyuu"]
+    "attack on titan", "my hero academia", "naruto", "one piece", "dragon ball z", "sword art online", "death note", "demon slayer", "fullmetal alchemist", "naruto shippuden", "hunter x hunter", "tokyo ghoul", "one punch man", "bleach", "fairy tail", "steins gate","code geass", "dragon ball super", "black clover", "jojos bizarre adventure", "mob psycho", "fate", "re zero ", "the promised neverland", "haikyuu","masamune no revenge","fruits basket","hells paradise","hajime no ippo","baki","your name","your lie in april","vinland saga","belzeebub","tokyo revengers","dr stone","dororo","overlord","horimiya","chainsawman","jujutsu kaisen"]
     
     let answer = '';
     let maxWrong = 6;
@@ -7,8 +7,6 @@ var fruits = [
     let guessed = [];
     let wordStatus = null;
     let hintUses = 0;
-    
-  
     function updateTimerDisplay(seconds) {
       const timerDisplay = document.getElementById('timer');
       timerDisplay.textContent = `${seconds} seconds`;
@@ -31,6 +29,7 @@ var fruits = [
         var winstatus=document.getElementById('keyboard').innerHTML;
         if(winstatus != 'You Won!!!'){
         document.getElementById('keyboard').innerHTML = 'You lost!!!';
+        document.getElementById('wordSpotlight').innerHTML = 'The answer was: ' + answer;
         }
       }
       return stopTimer;

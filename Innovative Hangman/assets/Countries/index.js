@@ -31,6 +31,7 @@ var fruits = [
       var winstatus=document.getElementById('keyboard').innerHTML;
       if(winstatus != 'You Won!!!'){
       document.getElementById('keyboard').innerHTML = 'You lost!!!';
+      document.getElementById('wordSpotlight').innerHTML = 'The answer was: ' + answer;
       }
     }
     return stopTimer;
